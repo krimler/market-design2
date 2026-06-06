@@ -1,0 +1,7 @@
+dataset,protocol,delta_G,success_rate,num_trials,query_budget
+acsincome,no_abstention,2.2654181503664965,1.0,200,50
+acsincome,coarse,2.2654181503664965,1.0,200,50
+acsincome,localizing,2.2654181503664965,0.0,200,50
+trec,no_abstention,0.13426686863474688,1.0,200,50
+trec,coarse,0.13426686863474688,1.0,200,50
+trec,localizing,0.13426686863474688,0.0,200,50

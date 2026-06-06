@@ -1,0 +1,9 @@
+\textit{Gaming-resistance verification (\Cref{thm:divergence} Part 1).} On
+ACSIncome ($d=68$) and TREC ($d=384$), we simulate a gaming attacker with
+manipulation budget $\delta_G$ set to the 90th percentile of distance-to-boundary
+on a held-out pool. Over 200 trials with query budget 50, the attacker's success
+rate under no abstention, coarse 30\% abstention, and boundary-localizing
+abstention with $\delta = \delta_G$ is, respectively, 1.00/1.00/0.00 on
+ACSIncome and 1.00/1.00/0.00 on TREC. The localizing protocol blocks gaming
+attacks entirely on both datasets, matching \Cref{thm:divergence} Part 1.
+The coarse protocol leaves gaming attacks essentially undefended.
