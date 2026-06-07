@@ -149,7 +149,7 @@ def main():
         )
         all_pass = all_pass and loc_ok and none_ok and coarse_ok
     if not all_pass:
-        print("\n  one or more self-checks failed; debug before submitting outputs")
+        print("\n  one or more self-checks failed; investigate before relying on the outputs")
 
     OUT.mkdir(exist_ok=True)
     csv_path = OUT / "gaming_results.csv"

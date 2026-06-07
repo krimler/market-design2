@@ -103,6 +103,9 @@ extract.py            Main experiment. Protocols A/B and ActiveThief on 7 datase
                       Fits the decay rates and runs the coverage sweep. Writes to out/.
 gaming_experiment.py  Gaming-resistance check. Fixed-rate abstention fails to stop a
                       gaming attacker. Boundary-near abstention blocks it.
+protocol_c.py         Ternary-abstain ablation (Protocol C). Adaptive vs random querier
+                      on the abstain channel. Writes out/ternary_c_results.json.
+plot_ternary_ablation.py  Builds out/ternary_ablation.pdf from that JSON.
 run.sh                Creates a venv, installs deps, runs extract.py end to end.
 data/                 US Census (ACS PUMS) California 2018 data. psam_p06.csv, via Git LFS.
 out/                  Generated figures, CSVs, results.json, and a results report.
@@ -132,8 +135,10 @@ torch, sentence-transformers, and datasets.
 ## Running it
 
 ```bash
-bash run.sh                  # runs the main experiment, writes figures and CSVs to out/
-python gaming_experiment.py  # gaming-resistance check, run after the line above
+bash run.sh                    # runs the main experiment, writes figures and CSVs to out/
+python gaming_experiment.py    # gaming-resistance check, run after the line above
+python protocol_c.py           # ternary-abstain ablation, reuses the same cached victims
+python plot_ternary_ablation.py  # builds out/ternary_ablation.pdf from its JSON
 ```
 
 Run these from the `code/` directory. `run.sh` switches into it for you. The
@@ -156,6 +161,8 @@ clone, run `extract.py` before `gaming_experiment.py`.
 | `ratio_plot.pdf` | Protocol B query count relative to Protocol A, across target errors `ε` |
 | `coverage_sweep.pdf` | Queries to reach 90% fidelity vs abstention rate `ᾱ` (ACSIncome) |
 | `decay_fits.csv` | Fitted decay rates `α` (Protocol A) and `β` (Protocol B) |
+| `ternary_ablation.pdf` | Protocol C: adaptive cliff, adaptive vs random, rate vs `δ` |
+| `ternary_c_results.json` | Per-setting means, CIs, and fitted `β` for Protocol C |
 | `gaming_results.csv` | Gaming-attack success rate under each defense |
 | `results.json` | All per-setting means and confidence intervals |
 | `README.md` | Full results report and validation log |

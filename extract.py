@@ -58,7 +58,6 @@ AG_NEWS_N = 20000
 CIVIL_N = 20000
 TREC_PER_CLASS = 800  # TREC train has only ~5.5k rows; NUM class caps the sample
 ENCODER_NAME = "sentence-transformers/all-MiniLM-L6-v2"
-SST2_ENCODER = ENCODER_NAME  # back-compat alias used in earlier README text
 
 L_VALUES = [5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000]
 COVERAGE_L = [5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000, 10000, 20000]
