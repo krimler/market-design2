@@ -85,7 +85,7 @@ The script `gaming_experiment.py` produces `gaming_results.csv` and `gaming_para
 V4, V5, V6, and V7 pass on every dataset. The Protocol A power-law slope α stays in the predicted range. The Protocol B exponential slope β is positive everywhere with R² ≥ 0.7. The coverage sweep is monotone non-decreasing in ᾱ for both protocols, with Protocol B's slope around 3× shallower.
 
 ## Note on the counterfactual formula
-The reference formula in the original prompt was `x_cf = x − (margin/||w||²)·w·sign(margin) − η·w·sign(margin)/||w||`. It does not flip the side of the boundary when the input has negative margin. We use the geometrically correct version. We project x onto the boundary, then step η in direction −sign(margin)·w/||w||. The implementation also grows η per row when the post-step margin still has not flipped sign, matching the retry instruction in the original prompt.
+A naive counterfactual `x_cf = x − (margin/||w||²)·w·sign(margin) − η·w·sign(margin)/||w||` does not flip the side of the boundary when the input has negative margin. We use the geometrically correct version. We project x onto the boundary, then step η in direction −sign(margin)·w/||w||. The implementation also grows η per row when the post-step margin still has not flipped sign.
 
 ## Reproducibility
 Run `bash run.sh` from this directory. It creates a fresh venv, installs the dependencies, and runs `extract.py` end to end.

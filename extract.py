@@ -52,7 +52,7 @@ DATASET_LABEL = {
     "civil-comments-toxic": "Civil Comments (toxic vs benign, MiniLM-L6)",
     "trec-num": "TREC (NUM vs rest, MiniLM-L6)",
 }
-COVERAGE_DATASET = "acs-income"  # smallest d, plays Adult's role from the original prompt
+COVERAGE_DATASET = "acs-income"  # smallest d; the tabular task used for the coverage sweep
 SST2_N = 20000  # 10000 per class, balanced
 AG_NEWS_N = 20000
 CIVIL_N = 20000
@@ -413,9 +413,9 @@ def make_counterfactual(
 ) -> np.ndarray:
     """For each row, project onto the victim's boundary and step eta to the other side.
 
-    The prompt's formula has a sign ambiguity for points with negative margin.
-    The geometrically correct version is x_proj = x - (margin/||w||^2) w,
-    then x_cf = x_proj - eta * sign(margin) * w / ||w||.
+    A naive formula that always subtracts sign(margin)*w has a sign ambiguity
+    for points with negative margin. The geometrically correct version is
+    x_proj = x - (margin/||w||^2) w, then x_cf = x_proj - eta * sign(margin) * w / ||w||.
     After the step we check victim(x_cf) != y_t and grow eta per row until
     the post-step margin has flipped sign for every row.
     """
@@ -1246,14 +1246,13 @@ def build_readme(state, agg_main, fit_rows, ratio_pts, queries_to_90, validation
     out.append("")
     out.append("## Note on the counterfactual formula")
     out.append(
-        "The reference formula in the original prompt was "
-        "`x_cf = x − (margin/||w||²)·w·sign(margin) − η·w·sign(margin)/||w||`. "
-        "It does not flip the side of the boundary when the input has "
+        "A naive counterfactual "
+        "`x_cf = x − (margin/||w||²)·w·sign(margin) − η·w·sign(margin)/||w||` "
+        "does not flip the side of the boundary when the input has "
         "negative margin. We use the geometrically correct version. We "
         "project x onto the boundary, then step η in direction "
         "−sign(margin)·w/||w||. The implementation also grows η per row "
-        "when the post-step margin still has not flipped sign, matching "
-        "the retry instruction in the original prompt."
+        "when the post-step margin still has not flipped sign."
     )
     out.append("")
     out.append("## Reproducibility")

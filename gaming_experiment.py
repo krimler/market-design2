@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Gaming-resistance experiment for the Divergence theorem (prompt2).
+"""Gaming-resistance experiment for the Divergence theorem.
 
 Reuses the cached logistic-regression victims trained in extract.py. Runs on
 ACSIncome (tabular, d=68) and TREC NUM (MiniLM-L6 embeddings, d=384).
@@ -16,7 +16,7 @@ ROOT = Path(__file__).resolve().parent
 CACHE = ROOT / "out" / "cache"
 OUT = ROOT / "out"
 
-# Map prompt2's short dataset names to our cache filenames.
+# Map the short dataset names used here to the extract.py cache filenames.
 DATASET_TO_CACHE = {
     "acsincome": "acs-income",
     "trec": "trec-num",
